@@ -1,16 +1,16 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebDemo.Controllers;
+using NUnit.Framework;
 
 namespace WebDemoTest.Controller
 {
-    [TestClass]
+    [TestFixture]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [Test]
         public void DictionaryListAccesablilityTest()
         {
-            var action = new HomeController().DictionaryLists
+            var action = new HomeController().DictionaryLists();
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 using WebDemo.Models;
 using WebDemo.CustumExtensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebDemo.DataAccessLayer;
+using NUnit.Framework;
 
 
 namespace WebDemoTest
 {
-    [TestClass]
+    [TestFixture]
     public class JapaneseWordsTest
     {
         private const string NOTNULLOREMPTY = "not null or empty ";
@@ -16,7 +16,7 @@ namespace WebDemoTest
         /// When creating a new entry ,the model needs to be instanciated and requires some fields to not be null or else
         /// the view will complain of null reference. This is also testing the (first) constructor.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void EmptyModel_ConstructorDefault()
         {
             JapaneseWord jpw = new JapaneseWord();
@@ -33,7 +33,7 @@ namespace WebDemoTest
         /// <summary>
         /// Testing second constructor, but the data comes from the database?
         /// </summary>
-        [TestMethod]
+        [Test]
         public void EditModel_SecondConstructor() 
         {
             JapaneseWord jpw = new JapaneseWord();

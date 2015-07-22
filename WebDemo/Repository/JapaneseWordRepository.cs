@@ -112,6 +112,10 @@ namespace WebDemo.Repository
         /// </summary>
         public void AddEntry(JapaneseWord model) 
         {
+            if (model == null) 
+            {
+                throw new ArgumentNullException("model");
+            }
             try
             {
                 JapaneseWordEntry jpwe = new JapaneseWordEntry

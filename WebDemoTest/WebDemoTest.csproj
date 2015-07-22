@@ -35,7 +35,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentAutomation.Core">
+      <HintPath>..\packages\FluentAutomation.Core.3.0.0.0\lib\net40\FluentAutomation.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAutomation.SeleniumWebDriver">
+      <HintPath>..\packages\FluentAutomation.SeleniumWebDriver.3.0.0.0\lib\net40\FluentAutomation.SeleniumWebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriver.Extensions.QuerySelector">
+      <HintPath>..\packages\Selenium.WebDriver.Extensions.QuerySelector.1.1.166\lib\net45\Selenium.WebDriver.Extensions.QuerySelector.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriver.Extensions.Shared">
+      <HintPath>..\packages\Selenium.WebDriver.Extensions.Shared.1.1.114\lib\Selenium.WebDriver.Extensions.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.46.0\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.41.0\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -63,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

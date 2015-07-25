@@ -38,8 +38,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -72,6 +82,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\WebDemo.mdf" />
+    <Content Include="App_Data\WebDemo_log.ldf">
+      <DependentUpon>WebDemo.mdf</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -82,11 +96,46 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\JapaneseWord.cs" />
+    <Compile Include="DataAccessLayer\JapaneseWordEntry.cs">
+      <DependentUpon>WebDemoApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLayer\WebDemoApi.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebDemoApi.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLayer\WebDemoApi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebDemoApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLayer\WebDemoApi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebDemoApi.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\JapaneseWordRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <EntityDeploy Include="DataAccessLayer\WebDemoApi.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WebDemoApi.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataAccessLayer\WebDemoApi.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WebDemoApi.edmx</DependentUpon>
+      <LastGenOutput>WebDemoApi.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccessLayer\WebDemoApi.edmx.diagram">
+      <DependentUpon>WebDemoApi.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataAccessLayer\WebDemoApi.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WebDemoApi.edmx</DependentUpon>
+      <LastGenOutput>WebDemoApi.cs</LastGenOutput>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -94,10 +143,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="DataAccessLayer\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\WebDemo\WebDemo.csproj">
       <Project>{62711ca3-d26a-4533-858d-96d5aed20bdb}</Project>
@@ -106,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

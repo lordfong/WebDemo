@@ -7,16 +7,19 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using WebDemo.Models;
-using WebDemo.Repository;
+using WebDemoApi.Repository;
 
 namespace WebDemoApi.Controllers
 {
     public class JapaneseWordController : ApiController
     {
         // GET: api/JapaneseWord
-        public IEnumerable<string> Get()
+        public string Get()
         {
-            return new string[] { "value1", "value2" };
+            var jprepository = new JapaneseWordRepository();
+            var getAllWords = jprepository.GetAllEntries();
+
+            return JsonConvert.SerializeObject(jprepository.GetAllEntries());
         }
 
         // GET: api/JapaneseWord/5

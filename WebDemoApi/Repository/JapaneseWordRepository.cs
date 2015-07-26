@@ -43,7 +43,7 @@ namespace WebDemoApi.Repository
                 query = (from jwords in _context.JapaneseWordEntries
                          select new JapaneseWord
                          {
-                             EntryID = Convert.ToInt32(jwords.EntryId),
+                             EntryID = jwords.EntryId,
                              Hiragana = jwords.Hiragana,
                              Romaji = jwords.Romaji,
                              AdditionalText = jwords.AdditionalText,

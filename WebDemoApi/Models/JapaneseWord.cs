@@ -22,7 +22,7 @@ namespace WebDemoApi.Models
     /// </summary>
     public class JapaneseWord
     {
-        public int EntryID { get; set; }
+        public long EntryID { get; set; }
         
         [Display(Name = "Word(s)/Phrase/Kanji")]
         public string Kanji { get; set; }

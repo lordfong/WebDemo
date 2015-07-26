@@ -5,6 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
+*.xml
 
 # Build results
 
@@ -154,3 +155,8 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+*.dll
+*.transform
+*.nupkg
+packages/
+webdemo/scripts

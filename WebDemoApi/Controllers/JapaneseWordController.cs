@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Script.Serialization;
-using WebDemo.Models;
+using WebDemoApi.Models;
 using WebDemoApi.Repository;
 
 namespace WebDemoApi.Controllers
@@ -17,7 +17,6 @@ namespace WebDemoApi.Controllers
         public string Get()
         {
             var jprepository = new JapaneseWordRepository();
-            var getAllWords = jprepository.GetAllEntries();
 
             return JsonConvert.SerializeObject(jprepository.GetAllEntries());
         }
@@ -25,18 +24,18 @@ namespace WebDemoApi.Controllers
         // GET: api/JapaneseWord/5
         public string Get(int id)
         {
-            string lol = "lol";
-            var entryModel = new JapaneseWord();
-            entryModel.AdditionalText = lol;
-            entryModel.Hiragana = lol;
-            entryModel.EntryID = 3;
-            entryModel.Romaji = lol;
-            return JsonConvert.SerializeObject(entryModel);
+            var jprepository = new JapaneseWordRepository();
+            return JsonConvert.SerializeObject(jprepository.GetEntry(id));
         }
 
         // POST: api/JapaneseWord
         public void Post([FromBody]string value)
         {
+            var model = new JapaneseWord();
+            // fill model??
+            var jprepository = new JapaneseWordRepository();
+            jprepository.AddEntry(model);
+
         }
 
         // PUT: api/JapaneseWord/5
@@ -47,6 +46,8 @@ namespace WebDemoApi.Controllers
         // DELETE: api/JapaneseWord/5
         public void Delete(int id)
         {
+            var jprepository = new JapaneseWordRepository();
+            jprepository.DeleteEntry(id);
         }
     }
 }

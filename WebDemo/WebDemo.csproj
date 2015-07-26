@@ -145,6 +145,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DictionarySPAController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyDictionaryController.cs" />
     <Compile Include="CustomExtensions\ExtensionMethods.cs" />
@@ -216,6 +217,7 @@
     <Content Include="Views\MyDictionary\Create.cshtml" />
     <Content Include="Views\MyDictionary\DictionaryForm.cshtml" />
     <Content Include="Views\MyDictionary\Edit.cshtml" />
+    <Content Include="Views\DictionarySPA\SpaDictionary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Dictionary\" />

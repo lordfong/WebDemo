@@ -160,3 +160,6 @@ $RECYCLE.BIN/
 *.nupkg
 packages/
 webdemo/scripts
+packages/bootstrap.3.0.0/
+/packages/
+!packages/repositories.config

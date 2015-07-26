@@ -72,7 +72,6 @@ namespace WebDemoApi.Models
             MotherTongueTranslation = source.MotherTongueTranslation;
             MotherTongueTranslationLabel = source.MotherTongueTranslationLabel;
         }
-
-        //public image photo {get; set;}
+                
     }
 }

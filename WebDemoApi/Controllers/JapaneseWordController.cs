@@ -23,16 +23,12 @@ namespace WebDemoApi.Controllers
         public string Get(int id)
         {
             string lol = "lol";
-            //var jprepository = new JapaneseWordRepository();
-            //var entryModel = jprepository.GetEntry(id);
             var entryModel = new JapaneseWord();
-            entryModel.AdditionalText = "lol";
-            entryModel.Hiragana = "lol";
+            entryModel.AdditionalText = lol;
+            entryModel.Hiragana = lol;
             entryModel.EntryID = 3;
-            entryModel.Romaji = "lol";
-           // var json =  new JavaScriptSerializer().Serialize(entryModel);
-            var json = JsonConvert.SerializeObject(entryModel);
-            return json ;
+            entryModel.Romaji = lol;
+            return JsonConvert.SerializeObject(entryModel);
         }
 
         // POST: api/JapaneseWord

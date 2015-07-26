@@ -16,24 +16,23 @@ namespace WebDemo.Repository
     /// </summary>
     public class JapaneseWordRepository
     {
-        private  WebDemoDataContext context;
+        private WebDemoDataContext context;
         private EventLog appLog;
 
-        public JapaneseWordRepository() 
+        public JapaneseWordRepository()
         {
             //Data context is by default initialized
             context = new WebDemoDataContext();
 
             EventLog appLog = new EventLog();
             appLog.Source = "WebDemo";
-            //appLog.WriteEntry("An entry to the Application event log.");
         }
 
         /// <summary>
         /// Get all entries from the table
         /// </summary>
         /// <returns></returns>
-        public List<JapaneseWord> GetAllEntries() 
+        public List<JapaneseWord> GetAllEntries()
         {
             List<JapaneseWord> query = new List<JapaneseWord>();
             try
@@ -42,7 +41,7 @@ namespace WebDemo.Repository
                 query = (from jwords in context.JapaneseWordEntries
                          select new JapaneseWord
                          {
-                             EntryID =Convert.ToInt32( jwords.EntryId),
+                             EntryID = Convert.ToInt32(jwords.EntryId),
                              Hiragana = jwords.Hiragana,
                              Romaji = jwords.Romaji,
                              AdditionalText = jwords.AdditionalText,
@@ -64,17 +63,17 @@ namespace WebDemo.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public JapaneseWord GetEntry(int id) 
+        public JapaneseWord GetEntry(int id)
         {
 
-            JapaneseWord emptyModel = new JapaneseWord ();
+            JapaneseWord emptyModel = new JapaneseWord();
 
             try
             {
-               
+
                 var query = (from entry in context.JapaneseWordEntries
-                            where entry.EntryId == id
-                            select entry).FirstOrDefault();
+                             where entry.EntryId == id
+                             select entry).FirstOrDefault();
                 JapaneseWord model = new JapaneseWord(query);
 
                 return model;
@@ -93,15 +92,16 @@ namespace WebDemo.Repository
         /// <param name="id"></param>
         public void DeleteEntry(int id)
         {
-            try { 
-            var jpword = (from words in context.JapaneseWordEntries
-                                  where words.EntryId.Equals(id)
-                                  select words).Single();
-            
-            context.JapaneseWordEntries.DeleteOnSubmit(jpword);
-            context.SubmitChanges();
-        }
-            catch(Exception ex)
+            try
+            {
+                var jpword = (from words in context.JapaneseWordEntries
+                              where words.EntryId.Equals(id)
+                              select words).Single();
+
+                context.JapaneseWordEntries.DeleteOnSubmit(jpword);
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
             {
                 appLog.WriteEntry(ex.Message);
             }
@@ -110,9 +110,9 @@ namespace WebDemo.Repository
         /// <summary>
         /// Add 1 entry to the table
         /// </summary>
-        public void AddEntry(JapaneseWord model) 
+        public void AddEntry(JapaneseWord model)
         {
-            if (model == null) 
+            if (model == null)
             {
                 throw new ArgumentNullException("model");
             }
@@ -143,13 +143,13 @@ namespace WebDemo.Repository
         /// Edit entry
         /// Retrieve model from database, overwrite the properties if the query if found
         /// </summary>
-        public void EditEntry(JapaneseWord model) 
+        public void EditEntry(JapaneseWord model)
         {
             try
             {
                 var query = (from entry in context.JapaneseWordEntries
-                            where entry.EntryId == model.EntryID
-                            select entry).FirstOrDefault();
+                             where entry.EntryId == model.EntryID
+                             select entry).FirstOrDefault();
                 if (query != null)
                 {
 
@@ -162,7 +162,7 @@ namespace WebDemo.Repository
 
                     context.SubmitChanges();
                 }
-                else 
+                else
                 {
                     throw new NullReferenceException("Entry model is null");
                 }
@@ -171,10 +171,11 @@ namespace WebDemo.Repository
             catch (Exception ex)
             {
                 appLog.WriteEntry(ex.Message);
+                throw;
             }
 
         }
-        
+
 
     }
 }

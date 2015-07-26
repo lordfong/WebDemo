@@ -23,11 +23,11 @@ namespace WebDemoApi.Repository
         public JapaneseWordRepository()
         {
             //Data context is by default initialized
-             _context = new WebDemoEntities();
+            _context = new WebDemoEntities();
 
             EventLog appLog = new EventLog();
             appLog.Source = "WebDemo";
-            //appLog.WriteEntry("An entry to the Application event log.");
+
         }
 
         /// <summary>
@@ -129,9 +129,7 @@ namespace WebDemoApi.Repository
                     MotherTongueTranslation = model.MotherTongueTranslation,
                     MotherTongueTranslationLabel = model.MotherTongueTranslationLabel
                 };
-                 //jpwe.EntryId = 0; // since this is an insert, id's are auto incremented on the database side
                 _context.JapaneseWordEntries.Add(jpwe);
-
                 _context.SaveChanges();
             }
             catch (Exception ex)

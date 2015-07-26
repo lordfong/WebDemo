@@ -24,9 +24,10 @@ namespace WebDemo.Controllers
             {
                 //something went wrong, record error and send user home
                 // however displayerrors can't be recorded
+                throw;
             }
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         /// <summary>
@@ -55,7 +56,6 @@ namespace WebDemo.Controllers
         /// <returns></returns>
         public ActionResult Create()
         {
-            
             return View();
         }
 
@@ -71,7 +71,7 @@ namespace WebDemo.Controllers
             JapaneseWordRepository jpwrep = new JapaneseWordRepository();
             try
             {
-                if (ModelState.IsValid) 
+                if (ModelState.IsValid)
                 {
                     TryUpdateModel(model);
                     jpwrep.AddEntry(model);
@@ -99,15 +99,6 @@ namespace WebDemo.Controllers
             return View(jpword);
         }
 
-        ///// <summary>
-        ///// Incase someone types the wrong url
-        ///// </summary>
-        ///// <returns></returns>
-        //public ActionResult Edit()
-        //{
-        //    return RedirectToAction("Index");
-        //}
-
         // POST: MyDictionary/Edit/5
         /// <summary>
         /// When it is posted via forms
@@ -127,7 +118,7 @@ namespace WebDemo.Controllers
                 //redirect to main dictionary page when done
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch 
             {
                 //Bounce them home
                 return RedirectToAction("Index");
@@ -155,7 +146,6 @@ namespace WebDemo.Controllers
             try
             {
                 // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
             catch

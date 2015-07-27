@@ -2,14 +2,81 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>SPA Dictionary</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
     bla bla bla bla
    <p> No Mvc</p>
+   <div id="product"></div>
+    
+    <input type="text" id="entryId"></input>
+    <input type="button" value="Search" onclick="find();" />
+
     <script>
-        //reference important scripts here jquery/anugular/knockout etc
-        alert("hello world");
+        var uri = 'api/JapaneseWord';
+
+        $(document).ready(function () {
+            console.log("ready!");
+           
+        });
+
+        function find() {
+             $.getJSON(uri + '/' + $('#entryId').val())
+                .done(function (data) {
+                    $("#product").text(data.Kanji);
+                })
+                .fail(function (jqXHR, textStatus, err) {
+                    $('input#entryId').val("Error");
+                });
+        }
+
+        function deleteWord(id)
+        {
+            $.ajax({
+                url: uri,
+                type: 'DELETE',
+                data: '',
+                success: function (result) {
+                    // Do something with the result
+                },
+                failure: function (result) 
+                {
+                    //????
+            }
+            });
+        }
+
+        function updateWord()
+        {
+            $.ajax({
+                url: uri,
+                type: 'PUT',
+                data: '',
+                success: function (result) {
+                    // Do something with the result
+                },
+                failure: function (result) {
+                    //????
+                }
+            });
+        }
+
+        function createWord()
+        {
+            $.ajax({
+                url: uri,
+                type: 'POST',
+                data: '',
+                success: function (result) {
+                    // Do something with the result
+                },
+                failure: function (result) {
+                    //????
+                }
+            });
+        }
     </script>
 
 </body>
+
 </html>

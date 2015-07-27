@@ -8,9 +8,10 @@ using Moq;
 
 namespace WebDemoApiTest
 {
+     [TestFixture]
     public class JapaneseWordRepositoryTest
     {
-        [TestFixture]
+       [Test]
         public void ShouldThrowWithInValidEntryId() 
         {
             

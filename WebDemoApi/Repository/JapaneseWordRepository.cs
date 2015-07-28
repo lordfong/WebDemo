@@ -5,6 +5,7 @@ using System.Web;
 using WebDemoApi.DataAccessLayer;
 using WebDemoApi.Models;
 using System.Diagnostics;
+using WebDemoApi.Interfaces;
 
 namespace WebDemoApi.Repository
 {
@@ -14,7 +15,7 @@ namespace WebDemoApi.Repository
     /// 
     /// The feature to search by symbol or word isn't implemented yet, I am not sure how i would implement this yet on the front-end
     /// </summary>
-    public class JapaneseWordRepository
+    public class JapaneseWordRepository :IJapaneseWordRepository
     {
         //private Web context;
         WebDemoEntities _context;

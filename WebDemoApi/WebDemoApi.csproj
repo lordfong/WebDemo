@@ -96,6 +96,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IJapaneseWordRepository.cs" />
     <Compile Include="Models\JapaneseWord.cs" />
     <Compile Include="DataAccessLayer\JapaneseWordEntry.cs">
       <DependentUpon>WebDemoApi.tt</DependentUpon>

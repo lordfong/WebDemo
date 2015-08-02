@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace WebDemoTest.RepositoryTest
 {
+    [TestFixture]
     public class RepositoryTesting
     {
-        [TestFixture]
+        
+        [Test]
         public void ShouldthrowExceptionIfModelIsNull() 
         {
 

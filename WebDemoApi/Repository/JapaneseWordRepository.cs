@@ -15,11 +15,14 @@ namespace WebDemoApi.Repository
     /// 
     /// The feature to search by symbol or word isn't implemented yet, I am not sure how i would implement this yet on the front-end
     /// </summary>
-    public class JapaneseWordRepository :IJapaneseWordRepository
+    public class JapaneseWordRepository : IJapaneseWordRepository
     {
         //private Web context;
         WebDemoEntities _context;
         private EventLog appLog;
+        private DataAccessLayer.Interface.IDbContext dbContext;
+        
+
 
         public JapaneseWordRepository()
         {
@@ -27,9 +30,15 @@ namespace WebDemoApi.Repository
             _context = new WebDemoEntities();
 
             EventLog appLog = new EventLog();
-            appLog.Source = "WebDemo";
+            appLog.Source = "WebDemoApi";
 
         }
+
+        public JapaneseWordRepository(WebDemoEntities context) 
+        {
+            _context = context;
+        }
+               
 
         /// <summary>
         /// Get all entries from the table

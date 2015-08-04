@@ -86,24 +86,7 @@ namespace WebDemoApiTest
             //assert
             Assert.IsNotEmpty(result);
 
-            //List<string> testProjectNames = new List<string> { "Rizigo" };
-            //Mock<ITeamCityApi> api = new Mock<ITeamCityApi>();
-
-            //List<ITeamCityProject> testProjects = new List<ITeamCityProject>();
-
-            //Mock<ITeamCityProject> someProject = new Mock<ITeamCityProject>();
-            //someProject.Setup(x => x.Name).Returns("Rizigo");
-
-            //testProjects.Add(someProject.Object);
-
-            //api.Setup(x => x.GetProjects()).Returns(testProjects);
-
-            //TeamCityRepository repository = new TeamCityRepository(api.Object);
-
-            //IEnumerable<string> result = repository.GetProjectNames().Select(x => x.Name);
-
-            //Assert.True(Enumerable.SequenceEqual(result, testProjectNames));
-
+         
 
         }
     }

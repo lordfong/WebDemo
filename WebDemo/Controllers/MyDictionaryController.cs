@@ -27,7 +27,7 @@ namespace WebDemo.Controllers
                 throw;
             }
 
-            return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Index", "Home");
         }
 
         /// <summary>

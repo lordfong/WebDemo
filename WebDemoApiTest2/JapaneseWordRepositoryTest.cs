@@ -43,14 +43,10 @@ namespace WebDemoApiTest2
             list.Add(word1);
             list.Add(word2);
             list.Add(word3);
-
-
-            //var context = new Mock<WebDemoEntities>();
+                                   
             var repository = new Mock<IJapaneseWordRepository>();
             repository.Setup(x => x.GetAllEntries()).Returns(list);
-           // context.Setup(x => x.JapaneseWordEntries).Returns(list);
-
-            //var repo = new JapaneseWordRepository(context.Object);
+                    
 
             //act
             var result = repository.Object.GetAllEntries();

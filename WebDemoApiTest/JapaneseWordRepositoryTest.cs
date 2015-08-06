@@ -76,12 +76,12 @@ namespace WebDemoApiTest
             list.Add(word3);
 
 
-            var context = new Mock<WebDemoEntities>();
+            var repository = new Mock<IJapaneseWordRepository>();
+            repository.Setup(x => x.GetAllEntries()).Returns(list);
 
-            var repo = new JapaneseWordRepository(context.Object);
 
             //act
-            var result = repo.GetAllEntries();
+            var result = repository.Object.GetAllEntries();
 
             //assert
             Assert.IsNotEmpty(result);

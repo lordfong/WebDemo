@@ -18,7 +18,39 @@ namespace WebDemoApiTest
     [TestFixture]
     public class JapaneseWordRepositoryTest
     {
+        private List<JapaneseWord> _list = new List<JapaneseWord>();
+        private WebDemoEntities _context = new WebDemoEntities();
+        private JapaneseWord _word1 = new JapaneseWord();
+        private JapaneseWord _word2 = new JapaneseWord();
+        private JapaneseWord _word3 = new JapaneseWord();
+        private int InvalidEntryId = 0;
 
+
+
+        public void Setup()
+        {
+            _word1.EntryID = 1;
+            _word1.Hiragana = "おおきい";
+            _word1.Kanji = "大きい";
+            _word1.Romaji = "O Ki I";
+            _word1.MotherTongueTranslation = "water";
+
+            _word1.EntryID = 2;
+            _word1.Hiragana = "はな";
+            _word1.Kanji = "花";
+            _word1.Romaji = "Ha Na";
+            _word2.MotherTongueTranslation = "Flower";
+
+            _word1.EntryID = 3;
+            _word1.Hiragana = "みず";
+            _word1.Kanji = "水";
+            _word1.Romaji = "Mi Zu";
+            _word3.MotherTongueTranslation = "water";
+
+            _list.Add(_word1);
+            _list.Add(_word2);
+            _list.Add(_word3);
+        }
 
         [Test]
         public void ShouldThrowWithInValidEntryId()
@@ -30,10 +62,17 @@ namespace WebDemoApiTest
         [Test]
         public void WhenCreatingWordsSaveShouldBeCalledOnce()
         {
+            //arrange
+            var mockRepo = new Mock<IJapaneseWordRepository>();
+            mockRepo.Setup(x => x.AddEntry(It.IsAny<JapaneseWord>()));
+            var lol = _context;
 
+            //act
+            // mockRepo.Object.AddEntry
+            var pop = lol.JapaneseWordEntries.Count();
 
-
-
+            //assery
+            // mockRepo.VerifyAll();
         }
 
         [Test]
@@ -43,41 +82,29 @@ namespace WebDemoApiTest
         }
 
         [Test]
+        public void ThrowExceptionWhenModelHasInvalidForRepositoryEdit()
+        {
+            //arrange
+            var mockRepo = new Mock<IJapaneseWordRepository>();
+
+            //act
+            
+
+            //assert
+
+
+        }
+
+        [Test]
         public void ShouldReturnJapaneseWords()
         {
 
             //arrancge
-            var list = new List<JapaneseWord>();
-
-            var word1 = new JapaneseWord();
-            var word2 = new JapaneseWord();
-            var word3 = new JapaneseWord();
-
-            word1.EntryID = 1;
-            word1.Hiragana = "おおきい";
-            word1.Kanji = "大きい";
-            word1.Romaji = "O Ki I";
-            word1.MotherTongueTranslation = "water";
-
-            word1.EntryID = 2;
-            word1.Hiragana = "はな";
-            word1.Kanji = "花";
-            word1.Romaji = "Ha Na";
-            word2.MotherTongueTranslation = "Flower";
-
-            word1.EntryID = 3;
-            word1.Hiragana = "みず";
-            word1.Kanji = "水";
-            word1.Romaji = "Mi Zu";
-            word3.MotherTongueTranslation = "water";
-
-            list.Add(word1);
-            list.Add(word2);
-            list.Add(word3);
+            Setup();
 
 
             var repository = new Mock<IJapaneseWordRepository>();
-            repository.Setup(x => x.GetAllEntries()).Returns(list);
+            repository.Setup(x => x.GetAllEntries()).Returns(_list);
 
 
             //act
@@ -86,7 +113,7 @@ namespace WebDemoApiTest
             //assert
             Assert.IsNotEmpty(result);
 
-         
+
 
         }
     }

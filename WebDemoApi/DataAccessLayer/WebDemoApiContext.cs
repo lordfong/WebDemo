@@ -6,31 +6,23 @@ using System.Web;
 
 namespace WebDemoApi.DataAccessLayer
 {
-    public class DbEntity
+    /// <summary>
+    /// Extending functionality of the JapaneseWordEntry class by creating a partial class
+    /// </summary>
+    public partial class JapaneseWordEntry
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class JapaneseWordDbContext : DbContext, IDisposable
-    {
-        public virtual IDbSet<DbEntity> DbEntities { get; set; }
-    }
-
-    public class Processor
-    {
-        private readonly JapaneseWordDbContext _dbContext;
-
-        public Processor(JapaneseWordDbContext dbContext)
+        public JapaneseWordEntry(string hirigana, string romaji, string kanji)
         {
-            _dbContext = dbContext;
+            Hiragana = hirigana;
+            Romaji = romaji;
+            Kanji = kanji;
         }
 
-        public DbEntity Find(int id)
-        {
-            return _dbContext.DbEntities.FirstOrDefault(dbEntity => dbEntity.Id == id);
-        }
-
+        public JapaneseWordEntry()
+        { }
 
     }
+
+   
+
 }

@@ -21,6 +21,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -98,6 +99,7 @@
     <Compile Include="DataAccessLayer\FakeDbSet.cs" />
     <Compile Include="DataAccessLayer\Interface\IContext.cs" />
     <Compile Include="DataAccessLayer\WebDemoApiContext.cs" />
+    <Compile Include="DataAccessLayer\WebDemoApiMockableContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -123,6 +125,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\JapaneseWordRepository.cs" />
+    <Compile Include="Repository\MockableWordRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -16,21 +16,54 @@ namespace WebDemoApi.Repository
             _context = context;
         }
 
-        public JapaneseWordEntry AddWord(string hiragana, string romaji, string kanji)
+        public void AddWord(JapaneseWordEntry model)
         {
-            var word = _context.JapaneseWordEntries.Add(new JapaneseWordEntry(hiragana, romaji, kanji));
+            _context.JapaneseWordEntries.Add(model);
             _context.SaveChanges();
-
-            return word;
+                                 
         }
 
         public List<JapaneseWordEntry> GetAllWords()
         {
-            var results = _context.JapaneseWordEntries.Select(x => x).ToList();
+           var results = _context.JapaneseWordEntries.Select(x => x).ToList();
+           
 
             return results;
         }
 
+        public List<JapaneseWordEntry> GetWord(int id)
+        {
+            var results = _context.JapaneseWordEntries.Where(x=>x.EntryId == id).Select(x => x).ToList();
+
+            return results;
+        }
+
+        public void DeleteWord(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException("id");
+            }
+
+            var result = _context.JapaneseWordEntries.Where(x => x.EntryId == id).Select(x => x).Single();
+
+            if (result == null)
+            {
+                throw new ArgumentOutOfRangeException("id");
+            }
+
+            _context.JapaneseWordEntries.Remove(result);
+            _context.SaveChanges();
+
+            
+        }
+
+        public void UpdateWord(JapaneseWordEntry model)
+        {
+            var result = _context.JapaneseWordEntries.Where(x => x.EntryId == model.EntryId).Select(x => x).Single();
+            result = model;
+            _context.SaveChanges();
+        }
 
     }
 }

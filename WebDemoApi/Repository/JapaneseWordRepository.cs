@@ -28,10 +28,8 @@ namespace WebDemoApi.Repository
         {
             //Data context is by default initialized
             _context = new WebDemoEntities();
-
             EventLog appLog = new EventLog();
             appLog.Source = "WebDemoApi";
-
         }
 
         public JapaneseWordRepository(WebDemoEntities context) 
@@ -77,9 +75,7 @@ namespace WebDemoApi.Repository
         /// <returns></returns>
         public JapaneseWord GetEntry(int id)
         {
-
             JapaneseWord emptyModel = new JapaneseWord();
-
             try
             {
 
@@ -176,7 +172,6 @@ namespace WebDemoApi.Repository
                 {
                     throw new NullReferenceException("Entry model is null");
                 }
-
             }
             catch (Exception ex)
             {

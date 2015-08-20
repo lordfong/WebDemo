@@ -21,11 +21,9 @@ namespace WebDemoApiTest
         public int _invalidEntryId = 0;
         public Mock<DbSet<JapaneseWordEntry>> mockSet = new Mock<DbSet<JapaneseWordEntry>>();
         public Mock<WebDemoEntities> mockContext = new Mock<WebDemoEntities>();
-        public Mock<WebDemoEntities> mockEmptyContext = new Mock<WebDemoEntities>();
-        public Mock<DbSet<JapaneseWordEntry>> mockEmptySet = new Mock<DbSet<JapaneseWordEntry>>();
-        public  MockableWordRepository _repository;
+        public MockableWordRepository _repository;
 
-        //[SetUp]
+        [SetUp]
         public void Setup()
         {
             _word1.EntryId = 1;
@@ -56,7 +54,6 @@ namespace WebDemoApiTest
             mockSet.As<IQueryable<JapaneseWordEntry>>().Setup(m => m.ElementType).Returns(queryableList.ElementType);
             mockSet.As<IQueryable<JapaneseWordEntry>>().Setup(m => m.GetEnumerator()).Returns(queryableList.GetEnumerator());
             mockContext.Setup(m => m.JapaneseWordEntries).Returns(mockSet.Object);
-            mockEmptyContext.Setup(m => m.JapaneseWordEntries).Returns(mockEmptySet.Object);
             _repository = new MockableWordRepository(mockContext.Object);
         }
     }

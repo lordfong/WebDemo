@@ -45,7 +45,7 @@ namespace WebDemoApi.Repository
                 throw new ArgumentOutOfRangeException("id");
             }
 
-            var result = _context.JapaneseWordEntries.Where(x => x.EntryId == id).Select(x => x).Single();
+            var result = _context.JapaneseWordEntries.Where(x => x.EntryId == id).Select(x => x).FirstOrDefault();
 
             if (result == null)
             {

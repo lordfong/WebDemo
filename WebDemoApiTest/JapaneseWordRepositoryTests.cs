@@ -60,7 +60,7 @@ namespace WebDemoApiTest
         [Test]
         public void WhenDeletingWordContextRemoveIsCalledOnce()
         {
-            mockEmptyContext.Setup(m => m.JapaneseWordEntries).Returns(mockEmptySet.Object);
+            mockContext.Setup(m => m.JapaneseWordEntries).Returns(mockSet.Object);
             _repository = new MockableWordRepository(mockContext.Object);
             var id = 1;
             _repository.DeleteWord(id);

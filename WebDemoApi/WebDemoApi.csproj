@@ -98,6 +98,7 @@
     <Compile Include="Controllers\JapaneseWordController.cs" />
     <Compile Include="DataAccessLayer\FakeDbSet.cs" />
     <Compile Include="DataAccessLayer\Interface\IContext.cs" />
+    <Compile Include="DataAccessLayer\Interface\IMockableWordRepository.cs" />
     <Compile Include="DataAccessLayer\WebDemoApiContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

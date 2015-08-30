@@ -10,18 +10,23 @@ using WebDemoApi.Models;
 using WebDemoApi.Repository;
 using WebDemoApi.DataAccessLayer;
 using System.Data.Entity;
+using WebDemoApi.DataAccessLayer.Interface;
 
 namespace WebDemoApi.Controllers
 {
     public class JapaneseWordController : ApiController
     {
-        DbContext _context = WebDemoEntities;
+        private IMockableWordRepository _japaneseWordRepository;
+
+        public JapaneseWordController()
+        {
+            _japaneseWordRepository = new MockableWordRepository(new WebDemoEntities());
+        }
+
         // GET: api/JapaneseWord
         public IEnumerable<DataAccessLayer.JapaneseWordEntry> Get()
         {
-            var jprepository = new MockableWordRepository();
-
-            return jprepository.GetAllWords();
+            return _japaneseWordRepository.GetAllWords();
         }
 
         // GET: api/JapaneseWord/5
@@ -34,7 +39,7 @@ namespace WebDemoApi.Controllers
         // POST: api/JapaneseWord
         public HttpResponseMessage Post(JapaneseWord model)
         {
-            
+
             var jprepository = new JapaneseWordRepository();
             jprepository.AddEntry(model);
 
@@ -50,22 +55,22 @@ namespace WebDemoApi.Controllers
         public void Put(int id, JapaneseWord model)
         {
             var jprepository = new JapaneseWordRepository();
-            try 
+            try
             {
                 jprepository.EditEntry(model);
             }
-            catch 
+            catch
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            
+
         }
 
         // DELETE: api/JapaneseWord/5
         public void Delete(int id)
         {
             var jprepository = new JapaneseWordRepository();
-            if (jprepository.GetEntry(id) == null) 
+            if (jprepository.GetEntry(id) == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }

@@ -12,6 +12,31 @@
     <input type="text" id="entryId"></input>
     <input type="button" value="Search" onclick="find();" />
 
+
+
+    <div id="create_form">
+        <form name="createword" action="">
+            <fieldset>
+                <label for="hiragana" id="hiragana">Hiragana</label>
+                <input type="text" name="Hiragana" id="Hiragana" size="30" value="" class="text-input" />
+                <label class="error" for="Hiragana" id="hiragana_error">This field is required.</label>
+                <br/>
+
+                <label for="romaji" id="romaji">Romaji</label>
+                <input type="text" name="romaji" id="romaji" size="30" value="" class="text-input" />
+                <label class="error" for="romaji" id="romaji_error">This field is required.</label>
+                <br />
+                <label for="Kanji" id="hiragana">Kanji</label>
+                <input type="text" name="kanji" id="kanji" size="30" value="" class="text-input" />
+                <label class="error" for="name" id="kanji_error">This field is required.</label>
+       
+                <br />
+                <input type="submit" name="submit" class="button" id="submit_btn" value="Submit" />
+            </fieldset>
+        </form>
+    </div>
+    <input type="button" value="" onclick="createWord();"/>
+
     <script>
         var uri = 'api/JapaneseWord';
 

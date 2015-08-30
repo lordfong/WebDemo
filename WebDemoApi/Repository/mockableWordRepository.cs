@@ -18,24 +18,31 @@ namespace WebDemoApi.Repository
 
         public void AddWord(JapaneseWordEntry model)
         {
-            _context.JapaneseWordEntries.Add(model);
-            _context.SaveChanges();
-                                 
+            using (var dbcontext = _context)
+            {
+                dbcontext.JapaneseWordEntries.Add(model);
+                dbcontext.SaveChanges();
+            }
         }
 
         public List<JapaneseWordEntry> GetAllWords()
         {
-           var results = _context.JapaneseWordEntries.Select(x => x).ToList();
-           
-
-            return results;
+            using (var dbcontext = _context)
+            {
+                var results = dbcontext.JapaneseWordEntries.Select(x => x).ToList();
+                return results;
+            }
         }
 
         public List<JapaneseWordEntry> GetWord(int id)
         {
-            var results = _context.JapaneseWordEntries.Where(x=>x.EntryId == id).Select(x => x).ToList();
+            using (var dbcontext = _context)
+            {
+                var results = dbcontext.JapaneseWordEntries.Where(x => x.EntryId == id).Select(x => x).ToList();
 
-            return results;
+                return results;
+            }
+
         }
 
         public void DeleteWord(int id)
@@ -45,24 +52,33 @@ namespace WebDemoApi.Repository
                 throw new ArgumentOutOfRangeException("id");
             }
 
-            var result = _context.JapaneseWordEntries.Where(x => x.EntryId == id).Select(x => x).FirstOrDefault();
-
-            if (result == null)
+            using (var dbcontext = _context)
             {
-                throw new ArgumentOutOfRangeException("id");
+                var result = dbcontext.JapaneseWordEntries.Where(x => x.EntryId == id).Select(x => x).FirstOrDefault();
+
+                if (result == null)
+                {
+                    throw new ArgumentOutOfRangeException("id");
+                }
+
+                dbcontext.JapaneseWordEntries.Remove(result);
+                dbcontext.SaveChanges();
             }
 
-            _context.JapaneseWordEntries.Remove(result);
-            _context.SaveChanges();
 
-            
+
+
         }
 
         public void UpdateWord(JapaneseWordEntry model)
         {
-            var result = _context.JapaneseWordEntries.Where(x => x.EntryId == model.EntryId).Select(x => x).Single();
-            result = model;
-            _context.SaveChanges();
+            using (var dbcontext = _context)
+            {
+                var result = dbcontext.JapaneseWordEntries.Where(x => x.EntryId == model.EntryId).Select(x => x).Single();
+                result = model;
+                dbcontext.SaveChanges();
+            }
+
         }
 
     }

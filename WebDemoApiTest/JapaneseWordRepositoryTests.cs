@@ -11,11 +11,13 @@ namespace WebDemoApiTest
     [TestFixture]
     public class JapaneseRepositoryAddTests : JapaneseWordRepositoryTestBase
     {
+       
         [Test]
         public void WhenAddingANewWordContextSaveIsCalledOnce()
         {
             mockContext = new Mock<WebDemoEntities>();
             mockContext.Setup(m => m.JapaneseWordEntries).Returns(mockSet.Object);
+            mockSet = new Mock<DbSet<JapaneseWordEntry>>();
 
             var repo = new MockableWordRepository(mockContext.Object);
             repo.AddWord(_word1);
@@ -28,7 +30,8 @@ namespace WebDemoApiTest
         public void WhenAddingANewWordContextAddisCalledOnce()
         {
 
-            var repo = new MockableWordRepository(mockContext.Object);
+      
+        var repo = new MockableWordRepository(mockContext.Object);
             var ExpectedWord = _word2;
 
             repo.AddWord(_word2);

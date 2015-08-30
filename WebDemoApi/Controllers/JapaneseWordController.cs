@@ -8,17 +8,20 @@ using System.Web.Http;
 using System.Web.Script.Serialization;
 using WebDemoApi.Models;
 using WebDemoApi.Repository;
+using WebDemoApi.DataAccessLayer;
+using System.Data.Entity;
 
 namespace WebDemoApi.Controllers
 {
     public class JapaneseWordController : ApiController
     {
+        DbContext _context = WebDemoEntities;
         // GET: api/JapaneseWord
-        public IEnumerable<JapaneseWord> Get()
+        public IEnumerable<DataAccessLayer.JapaneseWordEntry> Get()
         {
-            var jprepository = new JapaneseWordRepository();
+            var jprepository = new MockableWordRepository();
 
-            return jprepository.GetAllEntries();
+            return jprepository.GetAllWords();
         }
 
         // GET: api/JapaneseWord/5

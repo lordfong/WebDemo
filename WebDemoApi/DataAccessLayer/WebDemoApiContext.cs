@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using WebDemoApi.Models;
 
 namespace WebDemoApi.DataAccessLayer
 {
@@ -18,8 +19,17 @@ namespace WebDemoApi.DataAccessLayer
             Kanji = kanji;
         }
 
-        public JapaneseWordEntry()
-        { }
+        public JapaneseWordEntry(JapaneseWord model)
+        {
+            Hiragana = model.Hiragana;
+            Romaji = model.Romaji;
+            Kanji = model.Kanji;
+            MotherTongueTranslation = model.MotherTongueTranslation;
+            MotherTongueTranslationLabel = model.MotherTongueTranslationLabel;
+            AdditionalText = model.AdditionalText;
+        }
+
+        public JapaneseWordEntry() { }
 
     }
 

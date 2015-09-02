@@ -15,27 +15,27 @@
 
 
     <div id="create_form">
-        <form name="createword" action="">
+        
             <fieldset>
-                <label for="hiragana" id="hiragana">Hiragana</label>
-                <input type="text" name="Hiragana" id="Hiragana" size="30" value="" class="text-input" />
+                <label for="hiragana" >Hiragana</label>
+                <input type="text" name="Hiragana" id="hiragana" size="30" value="" class="text-input" />
                 <label class="error" for="Hiragana" id="hiragana_error">This field is required.</label>
                 <br/>
 
-                <label for="romaji" id="romaji">Romaji</label>
+                <label for="romaji" >Romaji</label>
                 <input type="text" name="romaji" id="romaji" size="30" value="" class="text-input" />
                 <label class="error" for="romaji" id="romaji_error">This field is required.</label>
                 <br />
-                <label for="Kanji" id="hiragana">Kanji</label>
+                <label for="Kanji" >Kanji</label>
                 <input type="text" name="kanji" id="kanji" size="30" value="" class="text-input" />
                 <label class="error" for="name" id="kanji_error">This field is required.</label>
        
                 <br />
-                <input type="submit" name="submit" class="button" id="submit_btn" value="Submit" />
+                
             </fieldset>
-        </form>
+        <input type="button" value="Submit" onclick="createWord();" />
     </div>
-    <input type="button" value="" onclick="createWord();"/>
+    
 
     <script>
         var uri = 'api/JapaneseWord';
@@ -91,7 +91,7 @@
             $.ajax({
                 url: uri,
                 type: 'POST',
-                data: '',
+                data: {"Hiragana":$("#hiragana").val()},
                 success: function (result) {
                     // Do something with the result
                 },

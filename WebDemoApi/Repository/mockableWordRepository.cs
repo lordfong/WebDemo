@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using WebDemoApi.DataAccessLayer;
 using WebDemoApi.DataAccessLayer.Interface;
+using WebDemoApi.Models;
 
 namespace WebDemoApi.Repository
 {
@@ -18,31 +19,33 @@ namespace WebDemoApi.Repository
             _context = context;
         }
 
-        public void AddWord(JapaneseWordEntry model)
+        public void AddWord(JapaneseWord model)
         {
+
             using (var dbcontext = _context)
             {
-                dbcontext.JapaneseWordEntries.Add(model);
+                var entityModel = new JapaneseWordEntry(model);
+                dbcontext.JapaneseWordEntries.Add(entityModel);
                 dbcontext.SaveChanges();
             }
         }
 
-        public List<JapaneseWordEntry> GetAllWords()
+        public List<JapaneseWord> GetAllWords()
         {
             using (var dbcontext = _context)
             {
-                var results = dbcontext.JapaneseWordEntries.Select(x => x).ToList();
+                var results = dbcontext.JapaneseWordEntries.Select(x => new JapaneseWord (x.EntryId,x.Kanji,x.Hiragana,x.Romaji,x.AdditionalText,x.MotherTongueTranslation,x.MotherTongueTranslationLabel)).ToList();
                 return results;
             }
         }
 
-        public List<JapaneseWordEntry> GetWord(int id)
+        public JapaneseWordEntry GetWord(int id)
         {
             using (var dbcontext = _context)
             {
-                var results = dbcontext.JapaneseWordEntries.Where(x => x.EntryId == id).Select(x => x).ToList();
+                var result = dbcontext.JapaneseWordEntries.Where(x => x.EntryId == id).Select(x => x).FirstOrDefault();
 
-                return results;
+                return result;
             }
 
         }
@@ -115,6 +118,11 @@ namespace WebDemoApi.Repository
             Dispose(true);
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
+        }
+
+        JapaneseWordEntry IMockableWordRepository.GetWord(int id)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 

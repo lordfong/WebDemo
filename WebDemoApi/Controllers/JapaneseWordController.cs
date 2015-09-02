@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Script.Serialization;
-using WebDemoApi.Models;
+
 using WebDemoApi.Repository;
 using WebDemoApi.DataAccessLayer;
-using System.Data.Entity;
+
 using WebDemoApi.DataAccessLayer.Interface;
+using WebDemoApi.Models;
 
 namespace WebDemoApi.Controllers
 {
@@ -24,40 +24,41 @@ namespace WebDemoApi.Controllers
         }
 
         // GET: api/JapaneseWord
-        public IEnumerable<DataAccessLayer.JapaneseWordEntry> Get()
+        public IEnumerable<JapaneseWord> Get()
         {
             return _japaneseWordRepository.GetAllWords();
         }
 
         // GET: api/JapaneseWord/5
-        public JapaneseWord Get(int id)
+        public JapaneseWordEntry Get(int id)
         {
-            var jprepository = new JapaneseWordRepository();
-            return jprepository.GetEntry(id);
+
+            return _japaneseWordRepository.GetWord(id);
         }
 
         // POST: api/JapaneseWord
         public HttpResponseMessage Post(JapaneseWord model)
         {
 
-            var jprepository = new JapaneseWordRepository();
-            jprepository.AddEntry(model);
+            //var jprepository = new JapaneseWordRepository();
+            //jprepository.AddEntry(model);
+            _japaneseWordRepository.AddWord(model);
 
             var response = Request.CreateResponse<JapaneseWord>(HttpStatusCode.Created, model);
 
-            string uri = Url.Link("DefaultApi", new { id = model.EntryID });
+            string uri = Url.Link("DefaultApi", new { id = model.EntryID});
             response.Headers.Location = new Uri(uri);
             return response;
 
         }
 
         // PUT: api/JapaneseWord/5
-        public void Put(int id, JapaneseWord model)
+        public void Put(JapaneseWordEntry model)
         {
-            var jprepository = new JapaneseWordRepository();
+            
             try
             {
-                jprepository.EditEntry(model);
+                _japaneseWordRepository.UpdateWord(model);
             }
             catch
             {
@@ -69,12 +70,12 @@ namespace WebDemoApi.Controllers
         // DELETE: api/JapaneseWord/5
         public void Delete(int id)
         {
-            var jprepository = new JapaneseWordRepository();
-            if (jprepository.GetEntry(id) == null)
+           
+            if (_japaneseWordRepository.GetWord(id) == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            jprepository.DeleteEntry(id);
+            _japaneseWordRepository.DeleteWord(id);
         }
     }
 }

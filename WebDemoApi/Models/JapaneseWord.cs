@@ -56,6 +56,17 @@ namespace WebDemoApi.Models
             MotherTongueTranslationLabel = "";
         }
 
+        public JapaneseWord(long id, string kanji, string hiragana,string romaji, string additionalText,string motherTongueTranslation, string mothertongueTranslationLabel )
+        {
+            EntryID = Convert.ToInt64(id);
+            Kanji = kanji;
+            Hiragana = hiragana;
+            Romaji = romaji;
+            AdditionalText = additionalText;
+            MotherTongueTranslation = motherTongueTranslation;
+            MotherTongueTranslationLabel = MotherTongueTranslationLabel;
+        }
+
         /// <summary>
         /// Model used for editing via the repository class
         /// 

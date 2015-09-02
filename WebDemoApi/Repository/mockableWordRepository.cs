@@ -8,11 +8,11 @@ using WebDemoApi.Models;
 
 namespace WebDemoApi.Repository
 {
-    public class MockableWordRepository : IMockableWordRepository
+    public class JapaneseWordRepository : IMockableWordRepository
     {
         private WebDemoEntities _context;
         
-        public MockableWordRepository(WebDemoEntities context)
+        public JapaneseWordRepository(WebDemoEntities context)
         {
             _context = context;
         }

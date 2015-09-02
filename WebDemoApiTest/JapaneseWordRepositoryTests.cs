@@ -19,7 +19,7 @@ namespace WebDemoApiTest
             mockContext.Setup(m => m.JapaneseWordEntries).Returns(mockSet.Object);
             mockSet = new Mock<DbSet<JapaneseWordEntry>>();
 
-            var repo = new MockableWordRepository(mockContext.Object);
+            var repo = new JapaneseWordRepository(mockContext.Object);
             repo.AddWord(_word1);
             _repository.AddWord(_word1);
 
@@ -31,7 +31,7 @@ namespace WebDemoApiTest
         {
 
       
-        var repo = new MockableWordRepository(mockContext.Object);
+        var repo = new JapaneseWordRepository(mockContext.Object);
             var ExpectedWord = _word2;
 
             repo.AddWord(_word2);
@@ -64,7 +64,7 @@ namespace WebDemoApiTest
         public void WhenDeletingWordContextRemoveIsCalledOnce()
         {
             mockContext.Setup(m => m.JapaneseWordEntries).Returns(mockSet.Object);
-            _repository = new MockableWordRepository(mockContext.Object);
+            _repository = new JapaneseWordRepository(mockContext.Object);
             var id = 1;
             _repository.DeleteWord(id);
 

@@ -20,7 +20,7 @@ namespace WebDemoApi.Controllers
 
         public JapaneseWordController()
         {
-            _japaneseWordRepository = new MockableWordRepository(new WebDemoEntities());
+            _japaneseWordRepository = new JapaneseWordRepository(new WebDemoEntities());
         }
 
         // GET: api/JapaneseWord

@@ -8,12 +8,10 @@ using WebDemoApi.Models;
 
 namespace WebDemoApi.Repository
 {
-    public class MockableWordRepository:IMockableWordRepository,IDisposable
+    public class MockableWordRepository : IMockableWordRepository
     {
-        //JapaneseWordEntry = WebDemoApiContext?????
         private WebDemoEntities _context;
         
-
         public MockableWordRepository(WebDemoEntities context)
         {
             _context = context;
@@ -34,7 +32,7 @@ namespace WebDemoApi.Repository
         {
             using (var dbcontext = _context)
             {
-                var results = dbcontext.JapaneseWordEntries.Select(x => new JapaneseWord (x.EntryId,x.Kanji,x.Hiragana,x.Romaji,x.AdditionalText,x.MotherTongueTranslation,x.MotherTongueTranslationLabel)).ToList();
+                var results = dbcontext.JapaneseWordEntries.Select(x => new JapaneseWord(x.EntryId, x.Kanji, x.Hiragana, x.Romaji, x.AdditionalText, x.MotherTongueTranslation, x.MotherTongueTranslationLabel)).ToList();
                 return results;
             }
         }
@@ -69,10 +67,6 @@ namespace WebDemoApi.Repository
                 dbcontext.JapaneseWordEntries.Remove(result);
                 dbcontext.SaveChanges();
             }
-
-
-
-
         }
 
         public void UpdateWord(JapaneseWordEntry model)
@@ -83,48 +77,6 @@ namespace WebDemoApi.Repository
                 result = model;
                 dbcontext.SaveChanges();
             }
-
         }
-
-        #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects).
-                }
-
-                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
-                // TODO: set large fields to null.
-
-                disposedValue = true;
-            }
-        }
-
-        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
-        // ~MockableWordRepository() {
-        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-        //   Dispose(false);
-        // }
-
-        // This code added to correctly implement the disposable pattern.
-        public void Dispose()
-        {
-            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-            Dispose(true);
-            // TODO: uncomment the following line if the finalizer is overridden above.
-            // GC.SuppressFinalize(this);
-        }
-
-        JapaneseWordEntry IMockableWordRepository.GetWord(int id)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
     }
 }

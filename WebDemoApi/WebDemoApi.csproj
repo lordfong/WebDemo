@@ -50,6 +50,14 @@
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.ConnectorNET.Data.6.8.3.2\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.ConnectorNET.Entity.6.8.3.2\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -96,8 +104,10 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\JapaneseWordController.cs" />
+    <Compile Include="DataAccessLayer\MySqlDbContext.cs" />
     <Compile Include="DataAccessLayer\FakeDbSet.cs" />
     <Compile Include="DataAccessLayer\Interface\IContext.cs" />
+    <Compile Include="DataModel\JapaneseWord.cs" />
     <Compile Include="Interfaces\IMockableWordRepository.cs" />
     <Compile Include="DataAccessLayer\WebDemoApiContext.cs" />
     <Compile Include="Global.asax.cs">

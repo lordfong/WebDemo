@@ -1,26 +1,23 @@
-﻿
-using System;
-using System.Collections.Generic;
-
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-
-using WebDemoApi.Repository;
-using WebDemoApi.DataAccessLayer;
-
-using WebDemoApi.DataAccessLayer.Interface;
-using WebDemoApi.Models;
-
-namespace WebDemoApi.Controllers
+﻿namespace WebDemoApi.Controllers
 {
+
+    using System;
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
+    using WebDemoApi.Repository;
+    using WebDemoApi.DataAccessLayer;
+    using WebDemoApi.DataAccessLayer.Interface;
+    using WebDemoApi.Models;
+
     public class JapaneseWordController : ApiController
     {
         private IMockableWordRepository _japaneseWordRepository;
 
         public JapaneseWordController()
         {
-            _japaneseWordRepository = new JapaneseWordRepository(new WebDemoEntities());
+            _japaneseWordRepository = new JapaneseWordRepository(new MySQLDbContext);
         }
 
         // GET: api/JapaneseWord

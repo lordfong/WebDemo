@@ -21,7 +21,7 @@
     /// </summary>
     public class JapaneseWord
     {
-        public long EntryID { get; set; }
+        public long EntryId { get; set; }
         
         [Display(Name = "Word(s)/Phrase/Kanji")]
         public string Kanji { get; set; }

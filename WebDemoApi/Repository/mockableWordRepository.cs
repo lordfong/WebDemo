@@ -8,76 +8,75 @@
     using WebDemoApi.DataAccessLayer.Interface;
     using WebDemoApi.Models;
 
-    public class JapaneseWordRepository // : IMockableWordRepository
+    public class JapaneseWordRepository 
     {
-    //    private MySQLDbContext _context;
+        private MySQLDbContext _context;
         
-    //    public JapaneseWordRepository(MySQLDbContext context)
-    //    {
-    //        _context = context;
-    //        _context.Database.CreateIfNotExists();
-    //    }
+        public JapaneseWordRepository(MySQLDbContext context)
+        {
+            _context = context;
+            _context.Database.CreateIfNotExists();
+        }
 
-    //    public void AddWord(JapaneseWord model)
-    //    {
+        public void AddWord(DataModel.JapaneseWord model)
+        {
 
-    //        using (var dbcontext = _context)
-    //        {
-    //            var entityModel = new JapaneseWordEntry(model);
-    //           dbcontext.Database.
-    //            dbcontext.SaveChanges();
-    //        }
-    //    }
+            using (var dbcontext = _context)
+            {
+                dbcontext.Word.Add(model);
+                dbcontext.SaveChanges();
+            }
+        }
 
-    //    public List<JapaneseWord> GetAllWords()
-    //    {
-    //        using (var dbcontext = _context)
-    //        {
-    //            var results = dbcontext.JapaneseWordEntries.Select(x => new JapaneseWord(x.EntryId, x.Kanji, x.Hiragana, x.Romaji, x.AdditionalText, x.MotherTongueTranslation, x.MotherTongueTranslationLabel)).ToList();
-    //            return results;
-    //        }
-    //    }
+        public List<JapaneseWord> GetAllWords()
+        {
+            using (var dbcontext = _context)
+            {
+                var results = dbcontext.Word.Select(x => new JapaneseWord(x.EntryId, x.Kanji, x.Hiragana, x.Romaji, x.AdditionalText, x.MotherTongueTranslation, x.MotherTongueTranslationLabel)).ToList();
+                return results;
+            }
+        }
 
-    //    public JapaneseWordEntry GetWord(int id)
-    //    {
-    //        using (var dbcontext = _context)
-    //        {
-    //            var result = dbcontext.JapaneseWordEntries.Where(x => x.EntryId == id).Select(x => x).FirstOrDefault();
+        public DataModel.JapaneseWord GetWord(int id)
+        {
+            using (var dbcontext = _context)
+            {
+                var result = dbcontext.Word.Where(x => x.EntryId == id).Select(x => x).FirstOrDefault();
 
-    //            return result;
-    //        }
+                return result;
+            }
 
-    //    }
+        }
 
-    //    public void DeleteWord(int id)
-    //    {
-    //        if (id <= 0)
-    //        {
-    //            throw new ArgumentOutOfRangeException("id");
-    //        }
+        public void DeleteWord(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException("id");
+            }
 
-    //        using (var dbcontext = _context)
-    //        {
-    //            var result = dbcontext.JapaneseWordEntries.Where(x => x.EntryId == id).Select(x => x).FirstOrDefault();
+            using (var dbcontext = _context)
+            {
+                var result = dbcontext.Word.Where(x => x.EntryId == id).Select(x => x).FirstOrDefault();
 
-    //            if (result == null)
-    //            {
-    //                throw new ArgumentOutOfRangeException("id");
-    //            }
+                if (result == null)
+                {
+                    throw new ArgumentOutOfRangeException("id");
+                }
 
-    //            dbcontext.JapaneseWordEntries.Remove(result);
-    //            dbcontext.SaveChanges();
-    //        }
-    //    }
+                dbcontext.Word.Remove(result);
+                dbcontext.SaveChanges();
+            }
+        }
 
-    //    public void UpdateWord(JapaneseWordEntry model)
-    //    {
-    //        using (var dbcontext = _context)
-    //        {
-    //            var result = dbcontext.JapaneseWordEntries.Where(x => x.EntryId == model.EntryId).Select(x => x).Single();
-    //            result = model;
-    //            dbcontext.SaveChanges();
-    //        }
-    //    }
+        public void UpdateWord(DataModel.JapaneseWord model)
+        {
+            using (var dbcontext = _context)
+            {
+                var result = dbcontext.Word.Where(x => x.EntryId == model.EntryId).Select(x => x).Single();
+                result = model;
+                dbcontext.SaveChanges();
+            }
+        }
     }
 }

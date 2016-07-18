@@ -13,11 +13,12 @@
 
     public class JapaneseWordController : ApiController
     {
-        private IMockableWordRepository _japaneseWordRepository;
+        private JapaneseWordRepository _japaneseWordRepository;
+        private MySQLDbContext _context = new MySQLDbContext();
 
         public JapaneseWordController()
         {
-            _japaneseWordRepository = new JapaneseWordRepository(new MySQLDbContext);
+            _japaneseWordRepository = new JapaneseWordRepository(_context);
         }
 
         // GET: api/JapaneseWord
@@ -27,7 +28,7 @@
         }
 
         // GET: api/JapaneseWord/5
-        public JapaneseWordEntry Get(int id)
+        public DataModel.JapaneseWord Get(int id)
         {
 
             return _japaneseWordRepository.GetWord(id);
@@ -37,9 +38,9 @@
         public HttpResponseMessage Post(JapaneseWord model)
         {
 
-            //var jprepository = new JapaneseWordRepository();
-            //jprepository.AddEntry(model);
-            _japaneseWordRepository.AddWord(model);
+            var m = new DataModel.JapaneseWord();
+            // Write model mapper!!!
+            _japaneseWordRepository.AddWord(m);
 
             var response = Request.CreateResponse<JapaneseWord>(HttpStatusCode.Created, model);
 
@@ -50,12 +51,13 @@
         }
 
         // PUT: api/JapaneseWord/5
-        public void Put(JapaneseWordEntry model)
+        public void Put(JapaneseWord model)
         {
-            
+            //write model mapper!!
+            var m = new DataModel.JapaneseWord();
             try
             {
-                _japaneseWordRepository.UpdateWord(model);
+                _japaneseWordRepository.UpdateWord(m);
             }
             catch
             {

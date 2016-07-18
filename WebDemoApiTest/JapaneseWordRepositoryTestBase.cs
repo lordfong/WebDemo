@@ -49,13 +49,13 @@ namespace WebDemoApiTest
             _list.Add(_word2);
             _list.Add(_word3);
 
-            var queryableList = _list.AsQueryable();
-            mockSet.As<IQueryable<JapaneseWord>>().Setup(m => m.Provider).Returns(queryableList.Provider);
-            mockSet.As<IQueryable<JapaneseWord>>().Setup(m => m.Expression).Returns(queryableList.Expression);
-            mockSet.As<IQueryable<JapaneseWord>>().Setup(m => m.ElementType).Returns(queryableList.ElementType);
-            mockSet.As<IQueryable<JapaneseWord>>().Setup(m => m.GetEnumerator()).Returns(queryableList.GetEnumerator());
-            mockContext.Setup(m => m.JapaneseWordEntries).Returns(mockSet.Object);
-            _repository = new JapaneseWordRepository(mockContext.Object);
+            //var queryableList = _list.AsQueryable();
+            //mockSet.As<IQueryable<JapaneseWord>>().Setup(m => m.Provider).Returns(queryableList.Provider);
+            //mockSet.As<IQueryable<JapaneseWord>>().Setup(m => m.Expression).Returns(queryableList.Expression);
+            //mockSet.As<IQueryable<JapaneseWord>>().Setup(m => m.ElementType).Returns(queryableList.ElementType);
+            //mockSet.As<IQueryable<JapaneseWord>>().Setup(m => m.GetEnumerator()).Returns(queryableList.GetEnumerator());
+            //mockContext.Setup(m => m.JapaneseWordEntries).Returns(mockSet.Object);
+            //_repository = new JapaneseWordRepository(mockContext.Object);
         }
     }
 }

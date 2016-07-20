@@ -154,6 +154,7 @@
       <DependentUpon>WebDemoApi.edmx</DependentUpon>
       <LastGenOutput>WebDemoApi.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\stuff.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

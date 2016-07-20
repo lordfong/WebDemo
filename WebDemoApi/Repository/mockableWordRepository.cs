@@ -15,7 +15,7 @@
         public JapaneseWordRepository(MySQLDbContext context)
         {
             _context = context;
-            _context.Database.CreateIfNotExists();
+            _context.Word.Create();
         }
 
         public void AddWord(DataModel.JapaneseWord model)

@@ -25,8 +25,8 @@
     {
         protected override void Seed(MySQLDbContext context)
         {
-            context.Word.Add(new JapaneseWord { EntryId = 1, Hiragana = "愛", Kanji = "愛", Romaji = "ai", AdditionalText = string.Empty, MotherTongueTranslation = "love", MotherTongueTranslationLabel = "English" });
             base.Seed(context);
+            context.Word.Add(new JapaneseWord { EntryId = 1, Hiragana = "愛", Kanji = "愛", Romaji = "ai", AdditionalText = string.Empty, MotherTongueTranslation = "love", MotherTongueTranslationLabel = "English" });
         }
     }
 }

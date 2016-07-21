@@ -15,7 +15,7 @@
         public JapaneseWordRepository(MySQLDbContext context)
         {
             _context = context;
-            _context.Word.Create();
+            _context.Database.CreateIfNotExists();
         }
 
         public void AddWord(DataModel.JapaneseWord model)
@@ -32,8 +32,8 @@
         {
             using (var dbcontext = _context)
             {
-                var results = dbcontext.Word.Select(x => new JapaneseWord(x.EntryId, x.Kanji, x.Hiragana, x.Romaji, x.AdditionalText, x.MotherTongueTranslation, x.MotherTongueTranslationLabel)).ToList();
-                return results;
+                var results = dbcontext.Word.FirstOrDefault(); //dbcontext.Word.Select(x => new JapaneseWord(x.EntryId, x.Kanji, x.Hiragana, x.Romaji, x.AdditionalText, x.MotherTongueTranslation, x.MotherTongueTranslationLabel)).ToList();
+                return null;
             }
         }
 

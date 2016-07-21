@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using System.Web;
     using WebDemoApi.DataAccessLayer;
@@ -21,17 +22,19 @@
     /// </summary>
     public class JapaneseWord
     {
+        [Key]
         public long EntryId { get; set; }
-        
-        [Display(Name = "Word(s)/Phrase/Kanji")]
+
+        [Column(TypeName = "nvarchar(MAX)")]
+        [Display(Name = "Word(s)/Phrase/Kanji/katakana")]
         public string Kanji { get; set; }
-       
+        [Column(TypeName = "nvarchar(MAX)")]
         [Display(Name = "Hiragana")]
         public string Hiragana { get; set; }
        
         [Display(Name = "Romaji")]
         public string Romaji { get; set; }
-       
+                
         [Display(Name = "Additional Text")]
         [DataType(DataType.MultilineText)]
         public string AdditionalText { get; set; }

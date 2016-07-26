@@ -1,4 +1,7 @@
-﻿namespace WebDemoApi.Repository
+﻿using System.Data.Entity;
+using System.Data.Entity.Core.Metadata.Edm;
+
+namespace WebDemoApi.Repository
 {
     using System;
     using System.Collections.Generic;
@@ -8,16 +11,29 @@
     using WebDemoApi.DataAccessLayer.Interface;
     using WebDemoApi.Models;
 
-    public class JapaneseWordRepository 
+    public class JapaneseWordRepository
     {
-        private MySQLDbContext _context;
+        private MySqlDbContext _context;
         
-        public JapaneseWordRepository(MySQLDbContext context)
-        {
-            _context = context;
-            _context.Database.CreateIfNotExists();
-        }
+        //public JapaneseWordRepository(MySqlDbContext context)
+        //{
+        //    _context = context;
+        //    _context.Database.CreateIfNotExists();
 
+
+        //}
+
+        public JapaneseWordRepository()
+        {
+            _context = new MySqlDbContext();
+            if (!_context.Database.Exists())
+            {
+                _context.Database.Create();
+                _context.Word.Add(new DataModel.JapaneseWord { EntryId = 1, Hiragana = "愛", Kanji = "愛", Romaji = "ai", AdditionalText = string.Empty, MotherTongueTranslation = "love", MotherTongueTranslationLabel = "English" });
+                _context.SaveChanges();
+            }
+        }
+        
         public void AddWord(DataModel.JapaneseWord model)
         {
 

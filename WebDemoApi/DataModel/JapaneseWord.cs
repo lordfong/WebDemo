@@ -20,6 +20,8 @@
     /// 
     /// Annotations are being used on model level to keep the view simple
     /// </summary>
+    /// 
+    [Table("JapaneseWord")]
     public class JapaneseWord
     {
         [Key]

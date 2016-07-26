@@ -14,11 +14,12 @@
     public class JapaneseWordController : ApiController
     {
         private JapaneseWordRepository _japaneseWordRepository;
-        private MySQLDbContext _context = new MySQLDbContext();
+        private MySqlDbContext _context = new MySqlDbContext();
 
         public JapaneseWordController()
         {
-            _japaneseWordRepository = new JapaneseWordRepository(_context);
+            //_japaneseWordRepository = new JapaneseWordRepository(_context);
+            _japaneseWordRepository = new JapaneseWordRepository();
         }
 
         // GET: api/JapaneseWord

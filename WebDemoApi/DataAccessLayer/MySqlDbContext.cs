@@ -5,30 +5,63 @@
     using WebDemoApi.DataModel;
 
     [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
-    public class MySQLDbContext : DbContext
+    public class MySqlDbContext : DbContext
     {
 
-        public MySQLDbContext() : base("MyDbContextConnectionString")
+        public MySqlDbContext() : base("MyDbContextConnectionString")
         {
-            Database.SetInitializer<MySQLDbContext>(new MyDbInitializer());
+            Database.SetInitializer<MySqlDbContext>(new MyDbInitializer());
 
         }
-
+        
         public DbSet<JapaneseWord> Word { get; set; }
+     }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    public class MyDbInitializer : DropCreateDatabaseAlways <MySqlDbContext>
+    {
+
+        //public MyDbInitializer()
+        //{
+
+        //}
+
+        public void InitializeMySqlDatabase(MySqlDbContext context)
         {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            if (!context.Database.Exists())
+            {
+                context.Database.Create();
+                context.Word.Add(new JapaneseWord { EntryId = 1, Hiragana = "愛", Kanji = "愛", Romaji = "ai", AdditionalText = string.Empty, MotherTongueTranslation = "love", MotherTongueTranslationLabel = "English" });
+                context.SaveChanges();
+            }
+         
+        }
+
+
+        protected override void Seed(MySqlDbContext context)
+        {
+            context.Word.Add(new JapaneseWord { EntryId = 1, Hiragana = "愛", Kanji = "愛", Romaji = "ai", AdditionalText = string.Empty, MotherTongueTranslation = "love", MotherTongueTranslationLabel = "English" });
+            base.Seed(context);
+            
         }
     }
 
-    public class MyDbInitializer : DropCreateDatabaseIfModelChanges <MySQLDbContext>
+    public class MyDbInitializer2 : CreateDatabaseIfNotExists<MySqlDbContext>
     {
-        protected override void Seed(MySQLDbContext context)
+        protected override void Seed(MySqlDbContext context)
         {
-            base.Seed(context);
             context.Word.Add(new JapaneseWord { EntryId = 1, Hiragana = "愛", Kanji = "愛", Romaji = "ai", AdditionalText = string.Empty, MotherTongueTranslation = "love", MotherTongueTranslationLabel = "English" });
-            context.SaveChanges();
+            base.Seed(context);
+            
+        }
+    }
+
+    public class MyDbInitializer3 : DropCreateDatabaseIfModelChanges<MySqlDbContext>
+    {
+        protected override void Seed(MySqlDbContext context)
+        {
+            context.Word.Add(new JapaneseWord { EntryId = 1, Hiragana = "愛", Kanji = "愛", Romaji = "ai", AdditionalText = string.Empty, MotherTongueTranslation = "love", MotherTongueTranslationLabel = "English" });
+            base.Seed(context);
+            
         }
     }
 }
